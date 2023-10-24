@@ -13,7 +13,7 @@ export default function Loads() {
     <main className="bg-[#EEF4F6]">
       <PermanentDrawerLeft>
         <div className="h-[100vh] w-full p-8">
-          <Typography variant="h4" sx={{mb:"8px"}}>Types of Loads</Typography>
+          <Typography variant="h5" sx={{mb:"8px"}}>Types of Loads</Typography>
           <Grid container spacing={3}>
             {loadsData.map((load, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>

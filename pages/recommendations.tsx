@@ -10,7 +10,7 @@ export default function Recommendations() {
     <main className="bg-[#EEF4F6]">
       <PermanentDrawerLeft>
         <div className="h-[100vh] w-full p-8">
-          <Typography variant="h4" sx={{mb:"8px"}}>Limitations and Recommendations</Typography>
+          <Typography variant="h5" sx={{mb:"8px"}}>Limitations and Recommendations</Typography>
           <div className="flex flex-wrap gap-4">
             <div className="w-full md:w-1/2 lg:w-1/3">
               <div className="shadow-md bg-white rounded-md p-6">
