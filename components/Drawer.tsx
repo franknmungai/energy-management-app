@@ -11,14 +11,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
-import { Inter } from 'next/font/google';
 
-import {
-  BiSolidDashboard,
-  BiMenu,
-  BiBarChartSquare,
-  BiUser,
-} from 'react-icons/bi';
+import { BiMenu, BiBarChartSquare, BiUser } from 'react-icons/bi';
 import { RxDashboard, RxRocket } from 'react-icons/rx';
 import { HiOutlineDocumentReport } from 'react-icons/hi';
 import { MdOutlineDevices } from 'react-icons/md';
@@ -26,6 +20,11 @@ import { RiSurveyLine } from 'react-icons/ri';
 import { FcAreaChart, FcElectricity } from 'react-icons/fc';
 
 import Chart1 from './Chart1';
+import { useMediaQuery } from '@mui/material';
+import DataPanel from './DataPanel';
+import Image from 'next/image';
+import Chart2 from './Chart2';
+import ChartPanel from './ChartPanel';
 
 const drawerWidth = 280;
 
@@ -50,11 +49,13 @@ const secondaryItems = [
   [<BiUser />, 'User Account'],
 ];
 
-const inter = Inter({ subsets: ['latin'] });
-
 export default function ResponsiveDrawer(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const isMobile = useMediaQuery('(max-width:600px)');
+
+  console.log({ isMobile });
 
   const [active, setActive] = useState(0);
 
@@ -198,32 +199,37 @@ export default function ResponsiveDrawer(props: Props) {
       >
         <Toolbar />
         <div className="h-[100vh] w-full p-8">
-          <div className="flex gap-8">
-            <div className="shadow-md bg-white rounded-md p-6 max-h-64">
-              <div className="flex gap-4">
-                <div className="p-2 bg-gray-300 rounded-full">
-                  <FcElectricity size={28} />
-                </div>{' '}
-                <p className="text-xl font-semibold">Consumption</p>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Container 1: Summary */}
+            <DataPanel
+              title="Consumption"
+              subtitle="Average monthly power consumption"
+              data="700 [kWH]"
+              icon={
+                <Image
+                  width={40}
+                  height={40}
+                  src="/icons/gauge.png"
+                  alt="gauge"
+                />
+              }
+            />
 
-              <p className="text-sm text-gray-600 mt-4">
-                Average Monthly Power Consumption
-              </p>
-
-              <p
-                className={`${inter.className} text-5xl font-extrabold text-blue-500 py-12`}
-              >
-                300 kWH
-              </p>
-            </div>
-            <div className="shadow-md bg-white rounded-md p-6 flex-1">
-              <p className="text-xl">
-                <FcAreaChart size={40} />
-              </p>
-
+            {/* Container 2: Chart */}
+            <ChartPanel title="Monthly power consumption">
               <Chart1 />
-            </div>
+            </ChartPanel>
+
+            <DataPanel
+              title="Current Energy Usage"
+              subtitle="Daily consumption average"
+              data="48 [kWH]"
+              icon={<FcElectricity size={28} />}
+            />
+
+            <ChartPanel title="Daily user statistics">
+              {/* <Chart2 /> */}
+            </ChartPanel>
           </div>
         </div>
       </Box>

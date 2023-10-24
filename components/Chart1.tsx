@@ -15,8 +15,8 @@ const xLabels = [
 export default function Chart1() {
   return (
     <LineChart
-      width={500}
-      height={300}
+      width={700}
+      height={400}
       series={[
         { data: pData, label: 'pv', yAxisKey: 'leftAxisId' },
         { data: uData, label: 'uv', yAxisKey: 'rightAxisId' },
