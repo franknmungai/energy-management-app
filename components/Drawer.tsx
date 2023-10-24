@@ -34,23 +34,24 @@ interface Props {
    * You won't need it on your project.
    */
   window?: () => Window;
+  children?: React.ReactNode;
 }
 
 const drawerItems = [
-  [<RxDashboard />, 'Dashboard'],
-  [<BiBarChartSquare />, 'Analytics'],
-  [<MdOutlineDevices />, 'Loads'],
-  [<HiOutlineDocumentReport />, 'Report'],
-  [<RxRocket />, 'Recommendations'],
+  [<RxDashboard />, "Dashboard", "/"],
+  [<BiBarChartSquare />, "Analytics", "/analytics"],
+  [<MdOutlineDevices />, "Loads", "/loads"],
+  [<HiOutlineDocumentReport />, "Report", "/report"],
+  [<RxRocket />, "Recommendations", "/recommendations"],
 ];
 
 const secondaryItems = [
-  [<RiSurveyLine />, 'Data entry'],
-  [<BiUser />, 'User Account'],
+  [<RiSurveyLine />, "Data entry", "/data_entry"],
+  [<BiUser />, "User Account", "/account"],
 ];
 
 export default function ResponsiveDrawer(props: Props) {
-  const { window } = props;
+  const { window, children } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const isMobile = useMediaQuery('(max-width:600px)');
@@ -68,52 +69,31 @@ export default function ResponsiveDrawer(props: Props) {
       {/* Logo */}
       <div className="w-full h-24"></div>
       <List>
-        {drawerItems.map(([icon, text], index) => {
+        {drawerItems.map(([icon, text, link], index) => {
           const isActive = index === active;
           return (
-            <ListItem
-              key={index}
-              sx={{
-                mb: 2,
-              }}
-            >
-              <ListItemButton
-                sx={{
-                  pt: 1.5,
-                  pb: 1.5,
-                  pr: 8,
-                  pl: 2.5,
-                  borderRadius: 2,
-                  bgcolor: isActive ? '#fff' : '',
-                  boxShadow: isActive ? 3 : 0,
-                }}
-                onClick={() => setActive(index)}
-              >
-                {/* <ListItemIcon sx={{ fontSize: 22, mr: -2, fontWeight: 800 }}>
-                  {icon}
-                </ListItemIcon> */}
-                <div className={`${isActive && 'font-bold'} flex space-x-6`}>
-                  <p className="text-2xl">{icon}</p>
-                  <p>{text}</p>
-                </div>
-                {/* <ListItemText
-                  primary={text}
-                  sx={{ fontSize: active ? '800' : '500' }}
-                /> */}
-              </ListItemButton>
-            </ListItem>
+            <NextLink href={link}>
+              <ListItem key={index}>
+                <ListItemButton>
+                  <ListItemIcon sx={{ fontSize: 22 }}>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            </NextLink>
           );
         })}
       </List>
       <Divider />
       <List>
-        {secondaryItems.map(([icon, text], index) => (
-          <ListItem key={index}>
-            <ListItemButton>
-              <ListItemIcon sx={{ fontSize: 22 }}>{icon}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+        {secondaryItems.map(([icon, text, link], index) => (
+          <NextLink href={link}>
+            <ListItem key={index}>
+              <ListItemButton>
+                <ListItemIcon sx={{ fontSize: 22 }}>{icon}</ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItemButton>
+            </ListItem>
+          </NextLink>
         ))}
       </List>
     </div>
@@ -123,14 +103,14 @@ export default function ResponsiveDrawer(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex', bgcolor: '#EEF4F6' }}>
+    <Box sx={{ display: "flex", bgcolor: "#EEF4F6" }}>
       <AppBar
         position="fixed"
         elevation={0}
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          bgcolor: '#EEF4F6',
+          bgcolor: "#EEF4F6",
 
           // background: 'linear-gradient(to right, #cc543310, #23074d10);',
         }}
@@ -141,7 +121,7 @@ export default function ResponsiveDrawer(props: Props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: "none" } }}
           >
             <BiMenu />
           </IconButton>
@@ -162,13 +142,13 @@ export default function ResponsiveDrawer(props: Props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', sm: 'none' },
+            display: { xs: "block", sm: "none" },
 
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
               width: drawerWidth,
               padding: 12,
-              bgcolor: '#EEF4F6',
+              bgcolor: "#EEF4F6",
             },
           }}
         >
@@ -177,11 +157,11 @@ export default function ResponsiveDrawer(props: Props) {
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': {
-              boxSizing: 'border-box',
+            display: { xs: "none", sm: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
               width: drawerWidth,
-              bgcolor: '#EEF4F6',
+              bgcolor: "#EEF4F6",
             },
           }}
           open
