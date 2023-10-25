@@ -15,6 +15,7 @@ body {
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   /* background: linear-gradient(to right, #cc54333f, #23074d3f); */
   height: 100vh;
+  background: #eef4f6;
 }
 
 ::-webkit-scrollbar {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,15 +17,9 @@ import { RxDashboard, RxRocket } from 'react-icons/rx';
 import { HiOutlineDocumentReport } from 'react-icons/hi';
 import { MdOutlineDevices } from 'react-icons/md';
 import { RiSurveyLine } from 'react-icons/ri';
-import { FcAreaChart, FcElectricity } from 'react-icons/fc';
-
-import Chart1 from './Chart1';
 import { useMediaQuery } from '@mui/material';
-import DataPanel from './DataPanel';
-import Image from 'next/image';
-import Chart2 from './Chart2';
-import ChartPanel from './ChartPanel';
-import NextLink from "next/link"
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 
 const drawerWidth = 280;
 
@@ -38,28 +32,27 @@ interface Props {
   children?: React.ReactNode;
 }
 
-const drawerItems = [
-  [<RxDashboard />, "Dashboard", "/"],
-  [<BiBarChartSquare />, "Analytics", "/analytics"],
-  [<MdOutlineDevices />, "Loads", "/loads"],
-  [<HiOutlineDocumentReport />, "Report", "/report"],
-  [<RxRocket />, "Recommendations", "/recommendations"],
+const drawerItems: any[] = [
+  [<RxDashboard />, 'Dashboard', '/'],
+  [<BiBarChartSquare />, 'Analytics', '/analytics'],
+  [<MdOutlineDevices />, 'Loads', '/loads'],
+  [<HiOutlineDocumentReport />, 'Report', '/report'],
+  [<RxRocket />, 'Recommendations', '/recommendations'],
 ];
 
 const secondaryItems = [
-  [<RiSurveyLine />, "Data entry", "/data_entry"],
-  [<BiUser />, "User Account", "/account"],
+  [<RiSurveyLine />, 'Data entry', '/data_entry'],
+  [<BiUser />, 'User Account', '/account'],
 ];
 
 export default function ResponsiveDrawer(props: Props) {
   const { window, children } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const router = useRouter();
 
   const isMobile = useMediaQuery('(max-width:600px)');
 
-  console.log({ isMobile });
-
-  const [active, setActive] = useState(0);
+  const isActive = (link: string) => link === router.pathname.toString();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -71,23 +64,43 @@ export default function ResponsiveDrawer(props: Props) {
       <div className="w-full h-24"></div>
       <List>
         {drawerItems.map(([icon, text, link], index) => {
-          const isActive = index === active;
+          console.log({ isActive, link });
           return (
-            <NextLink href={link}>
-              <ListItem key={index}>
-                <ListItemButton>
-                  <ListItemIcon sx={{ fontSize: 22 }}>{icon}</ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            </NextLink>
+            <ListItem
+              sx={{
+                mb: 2,
+              }}
+              key={link}
+              onClick={() => {
+                router.push(link);
+              }}
+            >
+              <ListItemButton
+                sx={{
+                  pt: 1.5,
+                  pb: 1.5,
+                  pr: 8,
+                  pl: 2.5,
+                  borderRadius: 2,
+                  bgcolor: isActive(link) ? '#fff' : '',
+                  boxShadow: isActive(link) ? 3 : 0,
+                }}
+              >
+                <div
+                  className={`${isActive(link) && 'font-bold'} flex space-x-6`}
+                >
+                  <p className="text-2xl">{icon}</p>
+                  <p>{text}</p>
+                </div>
+              </ListItemButton>
+            </ListItem>
           );
         })}
       </List>
       <Divider />
       <List>
         {secondaryItems.map(([icon, text, link], index) => (
-          <NextLink href={link}>
+          <NextLink href={link as string}>
             <ListItem key={index}>
               <ListItemButton>
                 <ListItemIcon sx={{ fontSize: 22 }}>{icon}</ListItemIcon>
@@ -104,14 +117,14 @@ export default function ResponsiveDrawer(props: Props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex", bgcolor: "#EEF4F6" }}>
+    <Box sx={{ display: 'flex', bgcolor: '#EEF4F6' }}>
       <AppBar
         position="fixed"
         elevation={0}
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
-          bgcolor: "#EEF4F6",
+          bgcolor: '#EEF4F6',
 
           // background: 'linear-gradient(to right, #cc543310, #23074d10);',
         }}
@@ -122,7 +135,7 @@ export default function ResponsiveDrawer(props: Props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { sm: 'none' } }}
           >
             <BiMenu />
           </IconButton>
@@ -143,13 +156,13 @@ export default function ResponsiveDrawer(props: Props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: 'block', sm: 'none' },
 
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
               width: drawerWidth,
               padding: 12,
-              bgcolor: "#EEF4F6",
+              bgcolor: '#EEF4F6',
             },
           }}
         >
@@ -158,11 +171,11 @@ export default function ResponsiveDrawer(props: Props) {
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
+            display: { xs: 'none', sm: 'block' },
+            '& .MuiDrawer-paper': {
+              boxSizing: 'border-box',
               width: drawerWidth,
-              bgcolor: "#EEF4F6",
+              bgcolor: '#EEF4F6',
             },
           }}
           open
@@ -179,8 +192,7 @@ export default function ResponsiveDrawer(props: Props) {
         }}
       >
         <Toolbar />
-           {children}
-      
+        {children}
       </Box>
     </Box>
   );

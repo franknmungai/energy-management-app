@@ -1,10 +1,11 @@
-import Chart1 from '@/components/Chart1';
+import Chart1 from '@/components/charts/EnergySummaryChart';
 import ChartPanel from '@/components/ChartPanel';
 import DataPanel from '@/components/DataPanel';
 import PermanentDrawerLeft from '@/components/Drawer';
 import { Inter } from 'next/font/google';
 import Image from 'next/image';
 import { FcElectricity } from 'react-icons/fc';
+import UsersCharts from '@/components/charts/UsersCharts';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,9 +15,9 @@ export default function Home() {
 
     <main className="bg-[#EEF4F6]">
       {/* <Navbar /> */}
-      <PermanentDrawerLeft >
-      <div className="h-[100vh] w-full p-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <PermanentDrawerLeft>
+        <div className="h-[100vh] w-full p-6 py-4">
+          <div className="grid grid-cols-1 items-center lg:grid-cols-3 gap-8">
             {/* Container 1: Summary */}
             <DataPanel
               title="Consumption"
@@ -45,8 +46,36 @@ export default function Home() {
             />
 
             <ChartPanel title="Daily user statistics">
-              {/* <Chart2 /> */}
+              <UsersCharts />
             </ChartPanel>
+
+            <DataPanel
+              title="Users"
+              subtitle="Average Daily Users"
+              data="850 [Users]"
+              icon={
+                <Image
+                  width={28}
+                  height={28}
+                  src="/icons/users.png"
+                  alt="users"
+                />
+              }
+            />
+
+            <DataPanel
+              title="Peak"
+              subtitle="Peak Hours"
+              data="0900 - 1700 [Hrs]"
+              icon={
+                <Image
+                  width={28}
+                  height={28}
+                  src="/icons/energy2.png"
+                  alt="users"
+                />
+              }
+            />
           </div>
         </div>
       </PermanentDrawerLeft>
