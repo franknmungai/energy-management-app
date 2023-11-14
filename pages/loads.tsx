@@ -1,38 +1,49 @@
-import { Grid, Typography, Card, CardContent } from "@mui/material";
-import PermanentDrawerLeft from "@/components/Drawer";
-import Image from "next/image";
-
-const loadsData = [
-  { imagePath: "/loads/images.jfif", caption: "Load Type 1" },
-  { imagePath: "/loads/images.jfif", caption: "Load Type 2" },
-  // Add more image and caption data as needed
-];
+import { Grid, Typography, Card, CardContent } from '@mui/material';
+import PermanentDrawerLeft from '@/components/Drawer';
+import Image from 'next/image';
+import { ISDevices, devicesData } from '@/lib/data';
 
 export default function Loads() {
   return (
     <main className="bg-[#EEF4F6]">
       <PermanentDrawerLeft>
         <div className="h-[100vh] w-full p-8">
-          <Typography variant="h5" sx={{mb:"8px"}}>Types of Loads</Typography>
+          <h1 className="text-2xl mb-4">MTL</h1>
           <Grid container spacing={3}>
-            {loadsData.map((load, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <Card>
-                  <Image
-                    src={load.imagePath}
-                    alt={load.caption}
-                    width={400} // Set your desired width
-                    height={300} // Set your desired height
-                  />
-                  <CardContent>
-                    <Typography variant="subtitle1" component="div">
-                      {load.caption}
-                    </Typography>
-                  </CardContent>
-                </Card>
+            {devicesData.map((load, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index} spacing={10}>
+                <div className="rounded shadow p-6 flex flex-col items-center space-y-2 bg-white">
+                  <img src={load.image} className="w-16 h-16" />
+                  <h3 className="text-2xl font-semibold">{load.type}</h3>
+                  <p className="text-xl font-mono">{load.number}</p>
+
+                  <div className="space-y-2">
+                    <p className="mt-2">{load.averageConsumption}</p>
+                  </div>
+                </div>
               </Grid>
             ))}
           </Grid>
+
+          <section className="my-6">
+            <h1 className="text-2xl mb-4">School of IS</h1>
+            <Grid container spacing={3}>
+              {ISDevices.map((load, index) => (
+                <Grid item xs={12} sm={6} md={4} key={index} spacing={10}>
+                  <div className="rounded shadow p-6 flex flex-col items-center space-y-2 bg-white">
+                    <img src={load.image} className="w-16 h-16" />
+                    <h3 className="text-2xl font-semibold">{load.type}</h3>
+
+                    <p className="text-xl font-mono">{load.number}</p>
+
+                    <div className="space-y-2">
+                      <p className="mt-2">{load.averageConsumption}</p>
+                    </div>
+                  </div>
+                </Grid>
+              ))}
+            </Grid>
+          </section>
         </div>
       </PermanentDrawerLeft>
     </main>

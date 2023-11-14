@@ -1,9 +1,14 @@
-import { Button, TextField } from '@mui/material';
-import { FormEvent, useReducer } from 'react';
+import { Button, TextField, Alert } from '@mui/material';
+import { collection, addDoc, updateDoc } from 'firebase/firestore';
+import { ref, uploadBytes } from 'firebase/storage';
+import { FormEvent, useReducer, useState } from 'react';
 import { BsUpload } from 'react-icons/bs';
 import CustomDatePicker from '../CustomDatePicker';
+import { db, storage } from '@/lib/firebase.config';
 
 const MeterReadingForm = () => {
+  const [message, setMessage] = useState({ type: '', text: '' });
+
   const [formState, dispatch] = useReducer(reducer, {
     meterId: '',
     reading: '',
@@ -26,12 +31,26 @@ const MeterReadingForm = () => {
     dispatch({ field, value });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log(formState);
+    const { image, ...data } = formState;
+
+    try {
+      const docRef = await addDoc(collection(db, 'meterReadings'), data);
+      console.log('Document written with ID: ', docRef.id);
+
+      const storageRef = ref(storage, 'loads/' + docRef.id);
+
+      const snapshot = await uploadBytes(storageRef, image);
+
+      const imageUrl = snapshot.ref.fullPath;
+      await updateDoc(docRef, { image: imageUrl });
+    } catch (e) {}
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
+      {message.text && <Alert severity={'error'}>{message.text}</Alert>}
+
       <TextField
         label="Meter Identification Number"
         variant="outlined"
