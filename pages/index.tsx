@@ -22,7 +22,7 @@ export default function Home() {
             <DataPanel
               title="Consumption"
               subtitle="Average monthly power consumption"
-              data="700 [kWH]"
+              data="321.6 [kW]"
               icon={
                 <Image
                   width={40}
@@ -41,7 +41,7 @@ export default function Home() {
             <DataPanel
               title="Current Energy Usage"
               subtitle="Daily consumption average"
-              data="48 [kWH]"
+              data="22 [kW]"
               icon={<FcElectricity size={28} />}
             />
 
