@@ -38,10 +38,11 @@ const drawerItems: any[] = [
   [<MdOutlineDevices />, 'Loads', '/loads'],
   [<HiOutlineDocumentReport />, 'Report', '/report'],
   [<RxRocket />, 'Recommendations', '/recommendations'],
+  [<RiSurveyLine />, 'Data entry', '/data_entry'],
 ];
 
 const secondaryItems = [
-  [<RiSurveyLine />, 'Data entry', '/data_entry'],
+  // [<RiSurveyLine />, 'Data entry', '/data_entry'],
   [<BiUser />, 'User Account', '/account'],
 ];
 
@@ -64,7 +65,6 @@ export default function ResponsiveDrawer(props: Props) {
       <div className="w-full h-24"></div>
       <List>
         {drawerItems.map(([icon, text, link], index) => {
-          console.log({ isActive, link });
           return (
             <ListItem
               sx={{
