@@ -1,17 +1,29 @@
 import CustomDatePicker from '@/components/CustomDatePicker';
 import PermanentDrawerLeft from '@/components/Drawer';
-import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import { Inter } from 'next/font/google';
-import { FormEvent, useReducer, useRef, useState } from 'react';
-import { BsUpload } from 'react-icons/bs';
-import LoadEntryForm from '@/components/forms/LoadEntryForm';
-import MeterReadingForm from '@/components/forms/MeterReadingForm';
+import { useState } from 'react';
 
-const inter = Inter({ subsets: ['latin'] });
+import dynamic from 'next/dynamic';
 
-export default function DataEntry() {
+const LoadEntryForm = dynamic(
+  () => import('@/components/forms/LoadEntryForm'),
+  {
+    loading: () => <p>Loading...</p>,
+    ssr: false,
+  }
+);
+
+const MeterReadingForm = dynamic(
+  () => import('@/components/forms/MeterReadingForm'),
+  {
+    loading: () => <p>Loading...</p>,
+    ssr: false,
+  }
+);
+
+const DataEntry = () => {
   const [tab, setTab] = useState('meter');
   const isActive = (name: string) => name === tab;
 
@@ -59,4 +71,6 @@ export default function DataEntry() {
       </PermanentDrawerLeft>
     </main>
   );
-}
+};
+
+export default DataEntry;
