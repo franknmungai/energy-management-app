@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -67,9 +66,7 @@ export default function ResponsiveDrawer(props: Props) {
         {drawerItems.map(([icon, text, link], index) => {
           return (
             <ListItem
-              sx={{
-                mb: 2,
-              }}
+              sx={{ mb: 2 }}
               key={link}
               onClick={() => {
                 router.push(link);
