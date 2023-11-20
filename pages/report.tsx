@@ -2,7 +2,6 @@ import PermanentDrawerLeft from "@/components/Drawer";
 import { reportData } from "@/lib/data";
 import { Grid } from "@mui/material";
 import { Inter } from "next/font/google";
-import { FcAreaChart, FcElectricity } from "react-icons/fc";
 
 const inter = Inter({ subsets: ["latin"] });
 
