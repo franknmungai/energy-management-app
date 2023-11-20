@@ -33,6 +33,44 @@ export const devicesData = [
     image: '/loads/switches.png',
   },
 ];
+export const reportData = [
+  {
+    name: 'Progress Report 1',
+    path: "/docs/report1.pdf",
+    date: "03-10-2023",
+  },
+  {
+    name: 'Progress Report 2',
+    path: "/docs/report2.pdf",
+    date: "10-10-2023",
+  },
+  {
+    name: 'Progress Report 3',
+    path: "/docs/report3.pdf",
+    date: "17-10-2023",
+  },
+  {
+    name: 'Progress Report 4',
+    path: "/docs/report4.pdf",
+    date: "24-10-2023",
+  },
+  {
+    name: 'Progress Report 5',
+    path: "/docs/report5.pdf",
+    date: "31-10-2023",
+  },
+  {
+    name: 'Progress Report 6',
+    path: "/docs/report6.pdf",
+    date: "07-11-2023", // One week after Report 5
+  },
+  {
+    name: 'Progress Report 7',
+    path: "/docs/report7.pdf",
+    date: "14-11-2023", // One more week after Report 6
+  },
+];
+
 
 export const ISDevices = [
   {

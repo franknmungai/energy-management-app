@@ -1,8 +1,10 @@
-import PermanentDrawerLeft from '@/components/Drawer';
-import { Inter } from 'next/font/google';
-import { FcAreaChart, FcElectricity } from 'react-icons/fc';
+import PermanentDrawerLeft from "@/components/Drawer";
+import { reportData } from "@/lib/data";
+import { Grid } from "@mui/material";
+import { Inter } from "next/font/google";
+import { FcAreaChart, FcElectricity } from "react-icons/fc";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Loads() {
   return (
@@ -10,19 +12,21 @@ export default function Loads() {
 
     <main className="bg-[#EEF4F6]">
       {/* <Navbar /> */}
-      <PermanentDrawerLeft >
-      <div className="h-[100vh] w-full p-8">
-          <div className="flex gap-8">
-            <div className="shadow-md bg-white rounded-md p-6 max-h-64">
-              <div className="flex gap-4">
-                <p className="text-xl font-semibold">Consumption</p>
+      <PermanentDrawerLeft>
+        <Grid container spacing={3}>
+          {reportData.map((report, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index} spacing={10}>
+              <div className="rounded shadow p-6 flex flex-col items-center space-y-2 bg-white">
+                <img src={"/icons/file.png"} className="w-16 h-16" />
+                <h3 className="text-2xl font-semibold">{report.name}</h3>
+                <p className="text-xl font-mono">{report.date}</p>
+                <a href={report.path} download>
+                  <img src={"/icons/download.png"} className="w-8 h-8" />
+                </a>
               </div>
-              <p className="text-sm text-gray-600 mt-4">
-                Average Monthly Power Consumption
-              </p>
-            </div>
-          </div>
-        </div>
+            </Grid>
+          ))}
+        </Grid>
       </PermanentDrawerLeft>
     </main>
   );
