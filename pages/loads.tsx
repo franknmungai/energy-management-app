@@ -1,7 +1,6 @@
-import { Grid, Typography, Card, CardContent } from '@mui/material';
 import PermanentDrawerLeft from '@/components/Drawer';
-import Image from 'next/image';
 import { ISDevices, devicesData } from '@/lib/data';
+import { Grid } from '@mui/material';
 
 export default function Loads() {
   return (
