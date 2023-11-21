@@ -62,7 +62,7 @@ export default function ResponsiveDrawer(props: Props) {
     <div className="p-1.5">
       {/* Logo */}
       <div className="w-full h-24"></div>
-      <List>
+      <List >
         {drawerItems.map(([icon, text, link], index) => {
           return (
             <ListItem
@@ -74,10 +74,6 @@ export default function ResponsiveDrawer(props: Props) {
             >
               <ListItemButton
                 sx={{
-                  pt: 1.5,
-                  pb: 1.5,
-                  pr: 8,
-                  pl: 2.5,
                   borderRadius: 2,
                   bgcolor: isActive(link) ? '#fff' : '',
                   boxShadow: isActive(link) ? 3 : 0,
@@ -158,7 +154,7 @@ export default function ResponsiveDrawer(props: Props) {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-              padding: 12,
+              
               bgcolor: '#EEF4F6',
             },
           }}
@@ -185,7 +181,7 @@ export default function ResponsiveDrawer(props: Props) {
         sx={{
           flexGrow: 1,
           p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          width: { xs:"100vw",sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
         <Toolbar />

@@ -13,7 +13,7 @@ export default function Analytics() {
       <Drawer>
         <div className="h-[100vh] w-full p-8">
           <ChartPanel
-            className={isMobile ? 'h-[700px]' : 'h-[50vh]'}
+            className={isMobile ? 'h-[800px]' : 'h-[70vh]'}
             title="Monthly energy consumption breakdown"
           >
             <div className="flex justify-between flex-col md:flex-row-reverse">

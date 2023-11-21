@@ -1,13 +1,14 @@
-import Chart1 from '@/components/charts/EnergySummaryChart';
-import ChartPanel from '@/components/ChartPanel';
-import DataPanel from '@/components/DataPanel';
-import PermanentDrawerLeft from '@/components/Drawer';
-import { Inter } from 'next/font/google';
-import Image from 'next/image';
-import { FcElectricity } from 'react-icons/fc';
-import UsersCharts from '@/components/charts/UsersCharts';
+import Chart1 from "@/components/charts/EnergySummaryChart";
+import ChartPanel from "@/components/ChartPanel";
+import DataPanel from "@/components/DataPanel";
+import PermanentDrawerLeft from "@/components/Drawer";
+import { Inter } from "next/font/google";
+import Image from "next/image";
+import { FcElectricity } from "react-icons/fc";
+import UsersCharts from "@/components/charts/UsersCharts";
+import { Box } from "@mui/material";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -44,10 +45,11 @@ export default function Home() {
               data="22 [kW]"
               icon={<FcElectricity size={28} />}
             />
-
-            <ChartPanel title="Daily user statistics">
-              <UsersCharts />
-            </ChartPanel>
+            <Box sx={{ display: { xs: "none", sm: "flex" } ,width:"100%"}}>
+              <ChartPanel title="Daily user statistics">
+                <UsersCharts />
+              </ChartPanel>
+            </Box>
 
             <DataPanel
               title="Users"
