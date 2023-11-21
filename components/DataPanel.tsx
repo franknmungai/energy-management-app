@@ -19,7 +19,7 @@ const DataPanel: React.FC<DataPanelProps> = ({
   data,
 }) => {
   return (
-    <div className="shadow-md bg-white rounded-md p-6 h-72 text-center">
+    <div className="shadow-md bg-white rounded-md p-6 h-80 text-center">
       <div className="flex gap-4">
         <div className="p-2 bg-gray-300 rounded-full flex items-center justify-center">
           <div>{icon}</div>
@@ -27,7 +27,7 @@ const DataPanel: React.FC<DataPanelProps> = ({
         <p className="text-2xl font-semibold">{title}</p>
       </div>
 
-      <p className="text-xl text-gray-600 mt-4">{subtitle}</p>
+      <p className="text-xl  text-gray-600 mt-4">{subtitle}</p>
 
       <p
         className={`${inter.className} text-4xl font-bold py-12 

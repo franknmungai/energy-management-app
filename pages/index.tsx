@@ -2,21 +2,25 @@ import Chart1 from '@/components/charts/EnergySummaryChart';
 import ChartPanel from '@/components/ChartPanel';
 import DataPanel from '@/components/DataPanel';
 import PermanentDrawerLeft from '@/components/Drawer';
-import { Inter } from 'next/font/google';
 import Image from 'next/image';
 import { FcElectricity } from 'react-icons/fc';
 import UsersCharts from '@/components/charts/UsersCharts';
-import { Box } from '@mui/material';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   const consumputionData = (
     <DataPanel
       title="Consumption"
-      subtitle="Average monthly power consumption"
-      data="321.6 [kW]"
-      icon={<Image width={40} height={40} src="/icons/gauge.png" alt="gauge" />}
+      subtitle="Average monthly power consumption (Last 3 months)"
+      data="20,146.67 [kWh]"
+      icon={
+        <Image
+          width={40}
+          height={40}
+          src="/icons/gauge.png"
+          alt="gauge"
+          className="w-12 h-12"
+        />
+      }
     />
   );
 
@@ -30,8 +34,8 @@ export default function Home() {
     <DataPanel
       title="Current Energy Usage"
       subtitle="Daily consumption average"
-      data="22 [kW]"
-      icon={<FcElectricity size={28} />}
+      data="223.85 [kW]"
+      icon={<FcElectricity size={28} className="w-12 h-12" />}
     />
   );
 
@@ -40,7 +44,15 @@ export default function Home() {
       title="Users"
       subtitle="Average Daily Users"
       data="850 [Users]"
-      icon={<Image width={28} height={28} src="/icons/users.png" alt="users" />}
+      icon={
+        <Image
+          width={28}
+          height={28}
+          src="/icons/users.png"
+          alt="users"
+          className="w-12 h-12"
+        />
+      }
     />
   );
   const usersChart = (
@@ -55,7 +67,64 @@ export default function Home() {
       subtitle="Peak Hours"
       data="0900 - 1700 [Hrs]"
       icon={
-        <Image width={28} height={28} src="/icons/energy2.png" alt="users" />
+        <Image
+          width={28}
+          height={28}
+          src="/icons/energy2.png"
+          alt="users"
+          className="w-12 h-12"
+        />
+      }
+    />
+  );
+
+  const billing = (
+    <DataPanel
+      title="Billing"
+      subtitle="Average Monthly billing (Last 3 months)"
+      data="783,348.81 [Ksh]"
+      icon={
+        <Image
+          width={28}
+          height={28}
+          src="/icons/payment.png"
+          alt="users"
+          className="w-12 h-12"
+        />
+      }
+    />
+  );
+
+  const highRateConsumption = (
+    <DataPanel
+      title="High Rate consumption"
+      subtitle="Average High Rate consumption (Last 3 months)"
+      data="15,870.33 [kWH]"
+      icon={
+        <Image
+          width={28}
+          height={28}
+          src="/icons/high-rate.png"
+          alt="users"
+          className="w-12 h-12"
+        />
+      }
+    />
+  );
+
+  const lowRateConsumption = (
+    <DataPanel
+      title="Low Rate consumption"
+      subtitle="Average Low Rate consumption (Last 3 months)"
+      data="4,276.33 [kWH]"
+      icon={
+        <Image
+          width={28}
+          height={28}
+          className="w-12 h-12"
+          src="/icons/low-rate.png"
+          alt="users"
+        />
       }
     />
   );
@@ -66,25 +135,29 @@ export default function Home() {
         {/* <Navbar /> */}
         <PermanentDrawerLeft>
           <div className="h-[100vh] p-6 py-4">
-            <div className="lg:grid grid-cols-1 items-center lg:grid-cols-3 gap-8 hidden">
+            <div className="lg:grid lg:grid-cols-3 items-center gap-8 hidden">
               {/* Container 1: Summary */}
               <div>{consumputionData}</div>
 
               {/* Container 2: Chart */}
-              <div>{consumptionChart}</div>
+              <div className="col-span-2 row-span-2">{consumptionChart}</div>
 
               <div>{currentUsage}</div>
 
-              <div>{usersChart}</div>
+              <div className="col-span-2 row-span-2">{usersChart}</div>
               <div>{usersData}</div>
 
               <div>{peakHours}</div>
             </div>
 
-            <div className="flex flex-col space-y-8 w-[180vw] p-4">
+            <div className="flex flex-col space-y-8 w-[180vw] p-4 lg:hidden">
               <div className="flex  space-x-6">
                 <div className="flex-1">{consumputionData}</div>
                 <div className="flex-1">{currentUsage}</div>
+              </div>
+              <div className="flex  space-x-6">
+                <div className="flex-1">{highRateConsumption}</div>
+                <div className="flex-1">{lowRateConsumption}</div>
               </div>
 
               <div>{consumptionChart}</div>
@@ -95,6 +168,16 @@ export default function Home() {
               </div>
 
               <div>{usersChart}</div>
+
+              <div className="flex space-x-6">
+                <div className="flex-1">{billing}</div>
+
+                <div className="flex-1">{highRateConsumption}</div>
+              </div>
+
+              <ChartPanel title="Billing Statistics">
+                <UsersCharts />
+              </ChartPanel>
             </div>
           </div>
 

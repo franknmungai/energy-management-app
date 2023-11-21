@@ -96,4 +96,14 @@ export const ISDevices = [
   },
 ];
 
-export const consumptionData = [];
+export const monthlyConsumptionData = [
+  { name: 'Jan', pv: 17500 },
+  { name: 'Feb', pv: 21250 },
+  { name: 'Mar', pv: 25000 },
+  { name: 'April', pv: 19500 },
+  { name: 'May', pv: 19000 },
+  { name: 'June', pv: 20412 },
+  { name: 'July', pv: 21038 },
+  { name: 'Aug', pv: 20000 },
+  { name: 'Sep', pv: 18990 },
+];
