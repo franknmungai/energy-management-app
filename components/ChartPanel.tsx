@@ -17,7 +17,7 @@ const ChartPanel: React.FC<ChartPanelProps> = ({
       <div className="flex space-x-4">
         <FcAreaChart size={28} />
 
-        <p className="text-lg text-gray-600">{title}</p>
+        <p className="text-xl text-gray-600">{title}</p>
       </div>
       <div className="mt-6"> {children}</div>
     </div>

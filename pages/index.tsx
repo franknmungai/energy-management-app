@@ -42,9 +42,9 @@ export default function Home() {
 
   const usersData = (
     <DataPanel
-      title="Users"
-      subtitle="Average Daily Users"
-      data="850 [Users]"
+      title="Occupancy"
+      subtitle="Average Monthly Users"
+      data="1820 [Users]"
       icon={
         <Image
           width={28}
@@ -57,16 +57,16 @@ export default function Home() {
     />
   );
   const usersChart = (
-    <ChartPanel title="Daily user statistics">
+    <ChartPanel title="Occupancy">
       <UsersCharts />
     </ChartPanel>
   );
 
   const peakHours = (
     <DataPanel
-      title="Peak"
-      subtitle="Peak Hours"
-      data="0900 - 1700 [Hrs]"
+      title="Per Capita"
+      subtitle="Per Capita Consumption"
+      data="6.76 [kwH]"
       icon={
         <Image
           width={28}

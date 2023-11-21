@@ -120,12 +120,55 @@ export const monthlyBillingData = [
   { name: 'Sep', pv: 1137337.43 },
 ];
 
-17500;
-21250;
-25000;
-19500;
-19000;
-20000;
-20500;
-20000;
-18000;
+export const occupancyData = [
+  {
+    name: 'Jan',
+    uv: 850,
+    pv: 746,
+  },
+  {
+    name: 'Feb',
+    uv: 802,
+    pv: 605,
+  },
+  {
+    name: 'Mar',
+    uv: 975,
+    pv: 752,
+  },
+  {
+    name: 'Apr',
+    uv: 988,
+    pv: 635,
+  },
+  {
+    name: 'May',
+    uv: 521,
+    pv: 345,
+  },
+  {
+    name: 'June',
+    uv: 638,
+    pv: 427,
+  },
+  {
+    name: 'July',
+    uv: 662,
+    pv: 445,
+  },
+  {
+    name: 'Aug',
+    uv: 538,
+    pv: 426,
+  },
+  {
+    name: 'Sep',
+    uv: 1241,
+    pv: 834,
+  },
+  {
+    name: 'Oct',
+    uv: 1352,
+    pv: 771,
+  },
+];
