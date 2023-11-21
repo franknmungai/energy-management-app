@@ -65,7 +65,7 @@ export default function Home() {
       <div className="bg-[#EEF4F6]">
         {/* <Navbar /> */}
         <PermanentDrawerLeft>
-          <div className="h-[100vh] w-full p-6 py-4">
+          <div className="h-[100vh] p-6 py-4">
             <div className="lg:grid grid-cols-1 items-center lg:grid-cols-3 gap-8 hidden">
               {/* Container 1: Summary */}
               <div>{consumputionData}</div>
@@ -81,8 +81,8 @@ export default function Home() {
               <div>{peakHours}</div>
             </div>
 
-            <div className="flex flex-col space-y-8 lg:hidden">
-              <div className="flex space-x-6">
+            <div className="flex flex-col space-y-8 w-[180vw] p-4">
+              <div className="flex  space-x-6">
                 <div className="flex-1">{consumputionData}</div>
                 <div className="flex-1">{currentUsage}</div>
               </div>
