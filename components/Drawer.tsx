@@ -102,8 +102,6 @@ export default function ResponsiveDrawer(props: Props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
           bgcolor: '#EEF4F6',
-
-          // background: 'linear-gradient(to right, #cc543310, #23074d10);',
         }}
       >
         <Toolbar>
@@ -114,7 +112,7 @@ export default function ResponsiveDrawer(props: Props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: 'none' } }}
           >
-            <BiMenu />
+            <img src="/icons/menu.png" className="h-12 w-12" />
           </IconButton>
           <h2 className="text-xl text-gray-600">Energy Management App</h2>
         </Toolbar>
