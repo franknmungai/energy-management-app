@@ -1,3 +1,4 @@
+import BottomNav from '@/components/BottomNav';
 import PermanentDrawerLeft from '@/components/Drawer';
 import { ISDevices, devicesData } from '@/lib/data';
 import { Grid } from '@mui/material';

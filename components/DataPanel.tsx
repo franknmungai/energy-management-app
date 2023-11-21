@@ -19,7 +19,7 @@ const DataPanel: React.FC<DataPanelProps> = ({
   data,
 }) => {
   return (
-    <div className="shadow-md bg-white rounded-md p-6 max-h-72 text-center">
+    <div className="shadow-md bg-white rounded-md p-6 max-h-72 h-72 text-center">
       <div className="flex gap-4">
         <div className="p-2 bg-gray-300 rounded-full flex items-center justify-center">
           <div>{icon}</div>

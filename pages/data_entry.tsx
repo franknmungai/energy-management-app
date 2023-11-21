@@ -34,15 +34,15 @@ const DataEntry = () => {
       {/* <Navbar /> */}
       <PermanentDrawerLeft>
         <div
-          className="h-[100vh] w-full p-8
+          className="h-[100vh] w-full lg:p-8
         ."
         >
-          <div className="shadow-md rounded-md mx-auto max-w-4xl bg-white flex space-x-6 items-center  p-8">
+          <div className="shadow-md rounded-md mx-auto w-full lg:max-w-4xl bg-white flex flex-col lg:flex-row space-x-6 items-center p-8">
             <img
               src={`/icons/${isActive('load') ? 'load.png' : 'meter.avif'}`}
               // src="/icons/load.png"
               alt=""
-              className="flex-1"
+              className="hidden lg:flex-1 lg:block"
               width={250}
               // height={}
             />
