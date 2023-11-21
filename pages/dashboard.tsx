@@ -44,8 +44,8 @@ export default function Home() {
   const usersData = (
     <DataPanel
       title="Occupancy"
-      subtitle="Average Monthly Users"
-      data="1820 [Users]"
+      subtitle="Average Daily Users"
+      data="3820 [Users]"
       icon={
         <Image
           width={28}
