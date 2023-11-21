@@ -3,8 +3,6 @@ import { Typography } from '@mui/material';
 import { Inter } from 'next/font/google';
 import { FcAreaChart, FcElectricity } from 'react-icons/fc';
 
-const inter = Inter({ subsets: ['latin'] });
-
 export default function Recommendations() {
   return (
     <main className="bg-[#EEF4F6]">
@@ -13,7 +11,7 @@ export default function Recommendations() {
           <Typography variant="h5" sx={{ mb: '8px' }}>
             Recommendations
           </Typography>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 space-y-8 lg:grid-cols-3 lg:gap-4">
             <RecommendationPanel
               title="Installation of Solar Panels"
               text={`We recommend a comprehensive renovation of the library
@@ -65,7 +63,7 @@ interface Props {
 }
 const RecommendationPanel: React.FC<Props> = ({ title, text }) => {
   return (
-    <div className="w-full flex-1 h-80">
+    <div className="w-full flex-1 min-h-[200px]">
       <div className="shadow-md bg-white rounded-md p-6">
         <FcElectricity size={48} />
         <h2 className="text-2xl font-semibold">{title}</h2>
