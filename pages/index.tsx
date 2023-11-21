@@ -6,7 +6,9 @@ import { Inter } from 'next/font/google';
 import Image from 'next/image';
 import { FcElectricity } from 'react-icons/fc';
 import UsersCharts from '@/components/charts/UsersCharts';
-import BottomNav from '@/components/BottomNav';
+import { Box } from '@mui/material';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   const consumputionData = (
@@ -98,10 +100,6 @@ export default function Home() {
 
           {/* <BottomNav /> */}
         </PermanentDrawerLeft>
-      </div>
-
-      <div className="fixed z-10 bottom-0 left-0 right-0 w-full lg:hidden ">
-        <BottomNav />
       </div>
     </main>
   );

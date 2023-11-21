@@ -1,12 +1,17 @@
 import { Legend, RadialBar, RadialBarChart, Tooltip } from 'recharts';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 interface EnergyConsumptionProps {
   data: any[];
 }
 const EnergyConsumption: React.FC<EnergyConsumptionProps> = ({ data }) => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+
   return (
     <RadialBarChart
-      width={750}
+      width={matches ? 750:350}
       height={500}
       innerRadius="50%"
       outerRadius="110%"
