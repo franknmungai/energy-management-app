@@ -143,7 +143,7 @@ export default function Analytics() {
               />
             </div>
 
-            <div>
+            <div className="flex space-x-4">
               <p className="text-2xl font-semibold">Compare</p>
 
               <Switch
