@@ -107,3 +107,25 @@ export const monthlyConsumptionData = [
   { name: 'Aug', pv: 20000 },
   { name: 'Sep', pv: 18990 },
 ];
+
+export const monthlyBillingData = [
+  { name: 'Jan', pv: 17500 },
+  { name: 'Feb', pv: 21250 },
+  { name: 'Mar', pv: 25000 },
+  { name: 'April', pv: 19500 },
+  { name: 'May', pv: 19000 },
+  { name: 'June', pv: 617702.96 },
+  { name: 'July', pv: 595006.03 },
+  { name: 'Aug', pv: 20000 },
+  { name: 'Sep', pv: 1137337.43 },
+];
+
+17500;
+21250;
+25000;
+19500;
+19000;
+20000;
+20500;
+20000;
+18000;

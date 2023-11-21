@@ -5,6 +5,7 @@ import PermanentDrawerLeft from '@/components/Drawer';
 import Image from 'next/image';
 import { FcElectricity } from 'react-icons/fc';
 import UsersCharts from '@/components/charts/UsersCharts';
+import BillingChart from '@/components/charts/BillingChart';
 
 export default function Home() {
   const consumputionData = (
@@ -138,6 +139,8 @@ export default function Home() {
             <div className="lg:grid lg:grid-cols-3 items-center gap-8 hidden">
               {/* Container 1: Summary */}
               <div>{consumputionData}</div>
+              <div className="flex-1">{highRateConsumption}</div>
+              <div className="flex-1">{lowRateConsumption}</div>
 
               {/* Container 2: Chart */}
               <div className="col-span-2 row-span-2">{consumptionChart}</div>
@@ -148,8 +151,17 @@ export default function Home() {
               <div>{usersData}</div>
 
               <div>{peakHours}</div>
+
+              <div className="flex-1">{billing}</div>
+
+              <ChartPanel title="Billing Statistics">
+                <BillingChart />
+              </ChartPanel>
+
+              <div className="flex-1">{highRateConsumption}</div>
             </div>
 
+            {/* Mobile version of the Dashboard layout */}
             <div className="flex flex-col space-y-8 w-[180vw] p-4 lg:hidden">
               <div className="flex  space-x-6">
                 <div className="flex-1">{consumputionData}</div>
@@ -176,7 +188,7 @@ export default function Home() {
               </div>
 
               <ChartPanel title="Billing Statistics">
-                <UsersCharts />
+                <BillingChart />
               </ChartPanel>
             </div>
           </div>

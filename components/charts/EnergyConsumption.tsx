@@ -1,6 +1,7 @@
 import { Legend, RadialBar, RadialBarChart, Tooltip } from 'recharts';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import CustomTooltip from './CustomTooltip';
 
 interface EnergyConsumptionProps {
   data: any[];
@@ -11,7 +12,7 @@ const EnergyConsumption: React.FC<EnergyConsumptionProps> = ({ data }) => {
 
   return (
     <RadialBarChart
-      width={matches ? 750:350}
+      width={matches ? 750 : 350}
       height={500}
       innerRadius="50%"
       outerRadius="110%"
@@ -42,22 +43,3 @@ const EnergyConsumption: React.FC<EnergyConsumptionProps> = ({ data }) => {
 };
 
 export default EnergyConsumption;
-
-interface TooltipProps {
-  active?: boolean;
-  payload?: any;
-}
-const CustomTooltip: React.FC<TooltipProps> = ({ active, payload }) => {
-  if (active) {
-    // Extract the data you want to display in the tooltip from payload
-    const data = payload[0].payload;
-
-    return (
-      <div className="p-2 rounded-sm shadow-md bg-white">
-        <p className="text-sm">{data.name}</p>
-        <p className="text-sm text-gray-600">{data.pv}</p>
-      </div>
-    );
-  }
-  return null;
-};

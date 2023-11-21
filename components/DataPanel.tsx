@@ -27,7 +27,7 @@ const DataPanel: React.FC<DataPanelProps> = ({
         <p className="text-2xl font-semibold">{title}</p>
       </div>
 
-      <p className="text-xl  text-gray-600 mt-4">{subtitle}</p>
+      <p className="text-xl lg:text-base  text-gray-600 mt-4">{subtitle}</p>
 
       <p
         className={`${inter.className} text-4xl font-bold py-12 
