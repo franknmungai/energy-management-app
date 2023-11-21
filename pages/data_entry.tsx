@@ -6,6 +6,7 @@ import { Inter } from 'next/font/google';
 import { useState } from 'react';
 
 import dynamic from 'next/dynamic';
+import { Box } from '@mui/material';
 
 const LoadEntryForm = dynamic(
   () => import('@/components/forms/LoadEntryForm'),
@@ -37,7 +38,10 @@ const DataEntry = () => {
           className="h-[100vh] w-full lg:p-8
         ."
         >
-          <div className="shadow-md rounded-md mx-auto w-full lg:max-w-4xl bg-white flex flex-col lg:flex-row space-x-6 items-center p-8">
+          <Box
+            sx={{ flexDirection: { xs: 'column', sm: 'row' } }}
+            className="shadow-md rounded-md mx-auto max-w-4xl bg-white flex space-x-6 items-center  p-8"
+          >
             <img
               src={`/icons/${isActive('load') ? 'load.png' : 'meter.avif'}`}
               // src="/icons/load.png"
@@ -66,7 +70,7 @@ const DataEntry = () => {
               </div>
               {tab === 'meter' ? <MeterReadingForm /> : <LoadEntryForm />}
             </div>
-          </div>
+          </Box>
         </div>
       </PermanentDrawerLeft>
     </main>
