@@ -1,10 +1,17 @@
-import { Button, TextField, Alert } from '@mui/material';
+import {
+  Button,
+  TextField,
+  Alert,
+  LinearProgress,
+  Snackbar,
+} from '@mui/material';
 import { collection, addDoc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes } from 'firebase/storage';
 import { FormEvent, useReducer, useState } from 'react';
 import { BsUpload } from 'react-icons/bs';
 import CustomDatePicker from '../CustomDatePicker';
 import { db, storage } from '@/lib/firebase.config';
+import { useRouter } from 'next/router';
 
 const MeterReadingForm = () => {
   const [message, setMessage] = useState({ type: '', text: '' });
@@ -31,24 +38,37 @@ const MeterReadingForm = () => {
     dispatch({ field, value });
   };
 
+  const router = useRouter();
+  const [isLoading, setLoading] = useState<boolean>();
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const { image, ...data } = formState;
+    // const { image, ...data } = formState;
 
-    try {
-      const docRef = await addDoc(collection(db, 'meterReadings'), data);
-      console.log('Document written with ID: ', docRef.id);
+    // try {
+    //   const docRef = await addDoc(collection(db, 'meterReadings'), data);
+    //   console.log('Document written with ID: ', docRef.id);
 
-      const storageRef = ref(storage, 'loads/' + docRef.id);
+    //   const storageRef = ref(storage, 'loads/' + docRef.id);
 
-      const snapshot = await uploadBytes(storageRef, image);
+    //   const snapshot = await uploadBytes(storageRef, image);
 
-      const imageUrl = snapshot.ref.fullPath;
-      await updateDoc(docRef, { image: imageUrl });
-    } catch (e) {}
+    //   const imageUrl = snapshot.ref.fullPath;
+    //   await updateDoc(docRef, { image: imageUrl });
+    // } catch (e) {}
+
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+
+      router.push('/analytics');
+    }, 1500);
   };
   return (
     <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
+      {isLoading ? <LinearProgress /> : null}
+      {isLoading === false && <Snackbar title="Data uploaded successfully" />}
       {message.text && <Alert severity={'error'}>{message.text}</Alert>}
 
       <TextField

@@ -32,17 +32,12 @@ interface Props {
 }
 
 const drawerItems: any[] = [
-  [<RxDashboard />, 'Dashboard', '/'],
+  [<RxDashboard />, 'Dashboard', '/dashboard'],
   [<BiBarChartSquare />, 'Analytics', '/analytics'],
   [<MdOutlineDevices />, 'Loads', '/loads'],
   [<HiOutlineDocumentReport />, 'Report', '/report'],
   [<RxRocket />, 'Recommendations', '/recommendations'],
   [<RiSurveyLine />, 'Data entry', '/data_entry'],
-];
-
-const secondaryItems = [
-  // [<RiSurveyLine />, 'Data entry', '/data_entry'],
-  [<BiUser />, 'User Account', '/account'],
 ];
 
 export default function ResponsiveDrawer(props: Props) {
@@ -62,7 +57,7 @@ export default function ResponsiveDrawer(props: Props) {
     <div className="p-1.5">
       {/* Logo */}
       <div className="w-full h-24"></div>
-      <List >
+      <List>
         {drawerItems.map(([icon, text, link], index) => {
           return (
             <ListItem
@@ -91,18 +86,7 @@ export default function ResponsiveDrawer(props: Props) {
         })}
       </List>
       <Divider />
-      <List>
-        {secondaryItems.map(([icon, text, link], index) => (
-          <NextLink href={link as string}>
-            <ListItem key={index}>
-              <ListItemButton>
-                <ListItemIcon sx={{ fontSize: 22 }}>{icon}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          </NextLink>
-        ))}
-      </List>
+      <List></List>
     </div>
   );
 
@@ -154,7 +138,7 @@ export default function ResponsiveDrawer(props: Props) {
             '& .MuiDrawer-paper': {
               boxSizing: 'border-box',
               width: drawerWidth,
-              
+
               bgcolor: '#EEF4F6',
             },
           }}
@@ -180,8 +164,8 @@ export default function ResponsiveDrawer(props: Props) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: {xs:1,sm:3},
-          width: { xs:"100vw",sm: `calc(100% - ${drawerWidth}px)` },
+          p: { xs: 1, sm: 3 },
+          width: { xs: '100vw', sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
         <Toolbar />

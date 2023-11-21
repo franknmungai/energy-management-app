@@ -1,14 +1,10 @@
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, LinearProgress, Snackbar } from '@mui/material';
 import { FormEvent, useReducer } from 'react';
 import { BsUpload } from 'react-icons/bs';
 import CustomDatePicker from '../CustomDatePicker';
-
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 const LoadEntryForm = () => {
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log(formState);
-  };
-
   const [formState, dispatch] = useReducer(formReducer, {
     name: '',
     quantity: '',
@@ -35,8 +31,26 @@ const LoadEntryForm = () => {
     dispatch({ field, value });
   };
 
+  const router = useRouter();
+  const [isLoading, setLoading] = useState<boolean>();
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+
+      router.push('/analytics');
+    }, 1500);
+  };
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
+      {isLoading ? <LinearProgress /> : null}
+      {isLoading === false && <Snackbar content="Data uploaded successfully" />}
+
       <TextField
         label="Load type (Name)"
         variant="outlined"

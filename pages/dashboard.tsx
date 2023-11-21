@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { FcElectricity } from 'react-icons/fc';
 import UsersCharts from '@/components/charts/UsersCharts';
 import BillingChart from '@/components/charts/BillingChart';
-import { monthlyConsumptionData, monthlyBillingData } from '@/lib/data';
+import { monthlyConsumptionData } from '@/lib/data';
 
 export default function Home() {
   const consumputionData = (
