@@ -180,7 +180,7 @@ export default function ResponsiveDrawer(props: Props) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+          p: {xs:1,sm:3},
           width: { xs:"100vw",sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
