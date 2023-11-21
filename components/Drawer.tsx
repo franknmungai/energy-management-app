@@ -111,6 +111,7 @@ export default function ResponsiveDrawer(props: Props) {
             edge="start"
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: 'none' } }}
+            className="p-8"
           >
             <img src="/icons/menu.png" className="h-12 w-12" />
           </IconButton>
