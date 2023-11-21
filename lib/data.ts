@@ -106,19 +106,15 @@ export const monthlyConsumptionData = [
   { name: 'July', pv: 21038 },
   { name: 'Aug', pv: 20000 },
   { name: 'Sep', pv: 18990 },
+  { name: 'Oct', pv: 0 },
+  { name: 'Nov', pv: 0 },
+  { name: 'Dec', pv: 0 },
 ];
 
-export const monthlyBillingData = [
-  { name: 'Jan', pv: 17500 },
-  { name: 'Feb', pv: 21250 },
-  { name: 'Mar', pv: 25000 },
-  { name: 'April', pv: 19500 },
-  { name: 'May', pv: 19000 },
-  { name: 'June', pv: 617702.96 },
-  { name: 'July', pv: 595006.03 },
-  { name: 'Aug', pv: 20000 },
-  { name: 'Sep', pv: 1137337.43 },
-];
+export const monthlyBillingData = monthlyConsumptionData.map((d) => ({
+  ...d,
+  pv: d.pv * 15,
+}));
 
 export const occupancyData = [
   {
@@ -171,4 +167,64 @@ export const occupancyData = [
     uv: 1352,
     pv: 771,
   },
+];
+
+export const monthlyConsumptionData2022 = [
+  { name: 'Jan', pv: 28212.7455 },
+  { name: 'Feb', pv: 28212.7455 },
+  { name: 'Mar', pv: 29632.403 },
+  { name: 'April', pv: 24423.7 },
+  { name: 'May', pv: 26901.45 },
+  { name: 'June', pv: 25874.3885 },
+  { name: 'July', pv: 24976.8 },
+  { name: 'Aug', pv: 24976.8 },
+  { name: 'Sep', pv: 32254.0035 },
+  { name: 'Oct', pv: 29811.1 },
+  { name: 'Nov', pv: 29811.1 },
+  { name: 'Dec', pv: 29811.1 },
+];
+
+export const monthlyBillingData2022 = [
+  { name: 'Jan', pv: 564254.91 },
+  { name: 'Feb', pv: 564254.91 },
+  { name: 'Mar', pv: 592648.06 },
+  { name: 'April', pv: 488474 },
+  { name: 'May', pv: 538029 },
+  { name: 'June', pv: 517487.77 },
+  { name: 'July', pv: 499536 },
+  { name: 'Aug', pv: 499536 },
+  { name: 'Sep', pv: 645080.07 },
+  { name: 'Oct', pv: 596222 },
+  { name: 'Nov', pv: 596222 },
+  { name: 'Dec', pv: 596222 },
+];
+
+export const monthlyConsumptionData2021 = [
+  { name: 'Jan', pv: 31114.6 },
+  { name: 'Feb', pv: 32070.65 },
+  { name: 'Mar', pv: 34215.15 },
+  { name: 'April', pv: 16829.35 },
+  { name: 'May', pv: 16628.333 },
+  { name: 'June', pv: 16678.33 },
+  { name: 'July', pv: 16178.3 },
+  { name: 'Aug', pv: 15678.333 },
+  { name: 'Sep', pv: 15178.3 },
+  { name: 'Oct', pv: 15228.3 },
+  { name: 'Nov', pv: 15128.3 },
+  { name: 'Dec', pv: 15128.3 },
+];
+
+export const monthlyBillingData2021 = [
+  { name: 'Jan', pv: 622292 },
+  { name: 'Feb', pv: 641413 },
+  { name: 'Mar', pv: 684303 },
+  { name: 'April', pv: 336587 },
+  { name: 'May', pv: 332566 },
+  { name: 'June', pv: 333566 },
+  { name: 'July', pv: 323566 },
+  { name: 'Aug', pv: 313566 },
+  { name: 'Sep', pv: 303566 },
+  { name: 'Oct', pv: 304566 },
+  { name: 'Nov', pv: 302566 },
+  { name: 'Dec', pv: 302566 },
 ];

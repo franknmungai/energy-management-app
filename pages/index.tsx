@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { FcElectricity } from 'react-icons/fc';
 import UsersCharts from '@/components/charts/UsersCharts';
 import BillingChart from '@/components/charts/BillingChart';
+import { monthlyConsumptionData, monthlyBillingData } from '@/lib/data';
 
 export default function Home() {
   const consumputionData = (
@@ -27,7 +28,7 @@ export default function Home() {
 
   const consumptionChart = (
     <ChartPanel title="Monthly power consumption">
-      <Chart1 />
+      <Chart1 data={monthlyConsumptionData} />
     </ChartPanel>
   );
 
@@ -130,6 +131,13 @@ export default function Home() {
     />
   );
 
+  const billingChart = (
+    <ChartPanel title="Billing Statistics">
+      <BillingChart
+        data={monthlyConsumptionData.map((d) => ({ ...d, pv: d.pv }))}
+      />
+    </ChartPanel>
+  );
   return (
     <main>
       <div className="bg-[#EEF4F6]">
@@ -152,44 +160,39 @@ export default function Home() {
 
               <div>{peakHours}</div>
 
-              <div className="flex-1">{billing}</div>
+              <div>{billing}</div>
 
-              <ChartPanel title="Billing Statistics">
-                <BillingChart />
-              </ChartPanel>
-
-              <div className="flex-1">{highRateConsumption}</div>
+              <div className="row-span-2 col-span-2">{billingChart}</div>
+              <div>{highRateConsumption}</div>
             </div>
 
             {/* Mobile version of the Dashboard layout */}
-            <div className="flex flex-col space-y-8 w-[180vw] p-4 lg:hidden">
-              <div className="flex  space-x-6">
+            <div className="flex flex-col space-y-8 w-[200vw] p-4 lg:hidden">
+              <div className="flex w-[200vw] space-x-6">
                 <div className="flex-1">{consumputionData}</div>
                 <div className="flex-1">{currentUsage}</div>
               </div>
-              <div className="flex  space-x-6">
+              <div className="w-[200vw] flex space-x-6">
                 <div className="flex-1">{highRateConsumption}</div>
                 <div className="flex-1">{lowRateConsumption}</div>
               </div>
 
               <div>{consumptionChart}</div>
 
-              <div className="flex justify-between space-x-6">
+              <div className="w-[200vw] flex justify-between space-x-6">
                 <div className="flex-1">{usersData}</div>
                 <div className="flex-1">{peakHours}</div>
               </div>
 
               <div>{usersChart}</div>
 
-              <div className="flex space-x-6">
+              <div className=" w-[200vw] flex space-x-6">
                 <div className="flex-1">{billing}</div>
 
                 <div className="flex-1">{highRateConsumption}</div>
               </div>
 
-              <ChartPanel title="Billing Statistics">
-                <BillingChart />
-              </ChartPanel>
+              <div>{billingChart}</div>
             </div>
           </div>
 

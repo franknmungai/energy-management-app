@@ -9,11 +9,11 @@ import {
   Tooltip,
 } from 'recharts';
 import CustomTooltip from './CustomTooltip';
-import { monthlyConsumptionData } from '@/lib/data';
 
-const data = monthlyConsumptionData.map((d) => ({ ...d, pv: d.pv * 14.7 }));
-
-const BillingChart = () => {
+interface Props {
+  data: any[];
+}
+const BillingChart: React.FC<Props> = ({ data }) => {
   return (
     <LineChart
       width={730}

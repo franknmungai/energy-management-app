@@ -12,7 +12,7 @@ const ChartPanel: React.FC<ChartPanelProps> = ({
 }) => {
   return (
     <div
-      className={`shadow-md bg-white rounded-md p-6 w-[180vw] md:w-full lg:col-span-2 lg:row-span-2 lg:scale-100 ${className}`}
+      className={`shadow-md bg-white rounded-md p-6 w-[200vw] md:w-full lg:col-span-2 lg:row-span-2 lg:scale-100 ${className}`}
     >
       <div className="flex space-x-4">
         <FcAreaChart size={28} />
