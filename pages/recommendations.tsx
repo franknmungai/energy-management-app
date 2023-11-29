@@ -1,9 +1,30 @@
 import PermanentDrawerLeft from '@/components/Drawer';
+import { useEffect, useState } from 'react';
 import { Typography } from '@mui/material';
 import { Inter } from 'next/font/google';
 import { FcAreaChart, FcElectricity } from 'react-icons/fc';
 
+// import agent from '@/lib/agent';
+
+const useRecommendations = () => {
+  const [data, setData] = useState<any>();
+
+  // useEffect(() => {
+  //   async function main() {
+  //     const responses = await agent();
+  //     setData(responses);
+  //   }
+
+  //   main();
+  // }, []);
+
+  return data;
+};
+
 export default function Recommendations() {
+  // const recommendations = useRecommendations();
+
+  // console.log({ recommendations });
   return (
     <main className="bg-[#EEF4F6]">
       <PermanentDrawerLeft>
