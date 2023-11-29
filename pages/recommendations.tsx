@@ -8,10 +8,7 @@ export default function Recommendations() {
     <main className="bg-[#EEF4F6]">
       <PermanentDrawerLeft>
         <div className="h-[100vh] w-full p-8">
-          <Typography variant="h5" sx={{ mb: '8px' }}>
-            Recommendations
-          </Typography>
-          <div className="grid grid-cols-1 space-y-8 lg:grid-cols-3 lg:gap-4">
+          <div className="grid grid-cols-1 space-y-8 lg:grid-cols-3 lg:gap-3">
             <RecommendationPanel
               title="Installation of Solar Panels"
               text={`We recommend a comprehensive renovation of the library
@@ -24,7 +21,7 @@ export default function Recommendations() {
             <RecommendationPanel
               title="Installation of new lighting tube fittings"
               text={` Installation of new lighting tube fittings to be used with the
-              energy saving / LED tubes.Though it may be costly now in long
+              energy saving /  tubes.Though it may be costly now in long
               term it will reduce the energy consumption significantly`}
             />
 
@@ -63,7 +60,7 @@ interface Props {
 }
 const RecommendationPanel: React.FC<Props> = ({ title, text }) => {
   return (
-    <div className="w-full flex-1 min-h-[200px]">
+    <div className="w-full flex-1 max-h-[200px]">
       <div className="shadow-md bg-white rounded-md p-6">
         <FcElectricity size={48} />
         <h2 className="text-2xl font-semibold">{title}</h2>

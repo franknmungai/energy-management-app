@@ -25,7 +25,7 @@ const Login = () => {
         <h2 className="text-xl">Energy Management App</h2>
 
         <form className="flex flex-col space-y-12" onSubmit={handleSubmit}>
-          <div>
+          <div className="w-full flex flex-col justify-center items-center">
             <img src="/icons/login.avif" className="w-64 h-64" />
             <p>
               (Margret Thatcher Library and the School of Information Science)

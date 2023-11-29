@@ -228,3 +228,67 @@ export const monthlyBillingData2021 = [
   { name: 'Nov', pv: 302566 },
   { name: 'Dec', pv: 302566 },
 ];
+
+const randomNumbers = [
+  0.975, 1.04, 1.07, 0.91, 0.912, 1.09, 0.95, 1.007, 0.9, 1.08, 0.97, 0.973,
+];
+
+export const monthlyConsumptionData2019 = monthlyConsumptionData2022.map(
+  (data, i) => ({
+    ...data,
+    pv: data.pv * 0.92 * randomNumbers[i],
+  })
+);
+
+console.log({ monthlyConsumptionData2019 });
+
+export const monthlyBillingData2019 = monthlyConsumptionData2019.map(
+  (data) => ({ ...data, pv: data.pv * 20 })
+);
+const C = 20_146.67;
+
+export const loadAnalyticsData = [
+  {
+    name: 'Lighting',
+    uv: C * 0.3,
+    pv: 2400,
+    fill: '#8884d8',
+    label: 'Lighting',
+  },
+  {
+    name: 'Computers and TV',
+    uv: C * 0.2,
+    pv: 4567,
+    fill: '#83a6ed',
+  },
+  {
+    name: 'Pump Motor',
+    uv: C * 0.0,
+    pv: 1398,
+    fill: '#8dd1e1',
+  },
+  {
+    name: 'Switches',
+    uv: C * 0.15,
+    pv: 9800,
+    fill: '#82ca9d',
+  },
+  {
+    name: 'Printers and Photocopiers',
+    uv: C * 0.1,
+    pv: 3908,
+    fill: '#a4de6c',
+  },
+  {
+    name: 'Security Lights',
+    uv: C * 0.2,
+    pv: 4800,
+    fill: '#d0ed57',
+  },
+  {
+    name: 'Miscellaneous',
+    uv: C * 0.05,
+    pv: 4800,
+    fill: '#ffc658',
+  },
+].sort((a, b) => a.uv - b.uv);

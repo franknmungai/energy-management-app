@@ -13,14 +13,14 @@ const EnergyConsumption: React.FC<EnergyConsumptionProps> = ({ data }) => {
   return (
     <RadialBarChart
       width={matches ? 750 : 350}
-      height={500}
+      height={600}
       innerRadius="50%"
       outerRadius="110%"
       data={data}
       startAngle={180}
       endAngle={0}
       barCategoryGap="20%"
-      barSize={10}
+      barSize={12}
       barGap="20%"
       // className="relative"
     >

@@ -7,15 +7,18 @@ import { useMediaQuery, Chip, Switch } from '@mui/material';
 import Chart1 from '@/components/charts/EnergySummaryChart';
 import BillingChart from '@/components/charts/BillingChart';
 import {
+  loadAnalyticsData,
   monthlyBillingData,
+  monthlyBillingData2019,
   monthlyBillingData2021,
   monthlyBillingData2022,
   monthlyConsumptionData,
+  monthlyConsumptionData2019,
   monthlyConsumptionData2021,
   monthlyConsumptionData2022,
 } from '@/lib/data';
 
-type Year = '2021' | '2022' | '2023';
+type Year = '2019' | '2021' | '2022' | '2023';
 
 export default function Analytics() {
   const isMobile = useMediaQuery('(max-width:720px)');
@@ -36,6 +39,11 @@ export default function Analytics() {
           energy: monthlyConsumptionData2021,
           billing: monthlyBillingData2021,
         };
+      case '2019':
+        return {
+          energy: monthlyConsumptionData2019,
+          billing: monthlyBillingData2019,
+        };
       default: // 2023
         return {
           energy: monthlyConsumptionData,
@@ -54,6 +62,10 @@ export default function Analytics() {
 
   const generateComparisonData = (yearA: Year, yearB: Year) => {
     const data = {
+      '2019': {
+        energy: monthlyConsumptionData2019,
+        billing: monthlyBillingData2019,
+      },
       '2021': {
         energy: monthlyConsumptionData2021,
         billing: monthlyBillingData2021,
@@ -92,6 +104,50 @@ export default function Analytics() {
     }
   };
 
+  const controllers = (
+    <div className="flex space-x-24">
+      <div className="w-[200vw] flex justify-end space-x-12">
+        <Chip
+          label="2019"
+          variant={year === '2019' ? 'filled' : 'outlined'}
+          onClick={() => {
+            handleChipClick('2019');
+          }}
+          className="scale-150"
+        />
+        <Chip
+          label="2021"
+          variant={year === '2021' ? 'filled' : 'outlined'}
+          onClick={() => {
+            handleChipClick('2021');
+          }}
+          className="scale-150"
+        />
+        <Chip
+          label="2022"
+          variant={year === '2022' ? 'filled' : 'outlined'}
+          onClick={() => handleChipClick('2022')}
+          className="scale-150"
+        />
+        <Chip
+          label="2023"
+          variant={year === '2023' ? 'filled' : 'outlined'}
+          onClick={() => handleChipClick('2023')}
+          className="scale-150"
+        />
+      </div>
+
+      <div className="flex space-x-4">
+        <p className="text-2xl font-semibold">Compare</p>
+
+        <Switch
+          checked={isCompareMode}
+          onChange={() => setCompareMode((value) => !value)}
+          inputProps={{ 'aria-label': 'controlled' }}
+        />
+      </div>
+    </div>
+  );
   return (
     <main className="bg-[#EEF4F6]">
       <Drawer>
@@ -100,59 +156,28 @@ export default function Analytics() {
             className={isMobile ? 'h-[800px]' : 'h-[70vh]'}
             title="Monthly energy consumption breakdown"
           >
-            <div className="flex justify-between flex-col md:flex-row-reverse">
+            <div className="flex justify-between flex-col-reverse md:flex-row-reverse pt-8">
               <div>
-                {data.map(({ fill, name }) => (
-                  <div className="flex items-center my-4 space-x-2">
-                    <div
-                      style={{ background: fill }}
-                      className={'w-4 h-4 rounded-full'}
-                    ></div>
-                    <p style={{ color: fill }}>{name}</p>
-                  </div>
-                ))}
+                {loadAnalyticsData
+                  .map(({ fill, name }) => (
+                    <div className="flex items-center my-4 space-x-2">
+                      <div
+                        style={{ background: fill }}
+                        className={'w-4 h-4 rounded-full'}
+                      ></div>
+                      <p style={{ color: fill }}>{name}</p>
+                    </div>
+                  ))
+                  .reverse()}
               </div>
 
               <div className="w-full flex justify-center">
-                <EnergyConsumption data={data} />
+                <EnergyConsumption data={loadAnalyticsData} />
               </div>
             </div>
           </ChartPanel>
 
-          <div className="flex space-x-24">
-            <div className="w-[200vw] flex justify-end space-x-12">
-              <Chip
-                label="2021"
-                variant={year === '2021' ? 'filled' : 'outlined'}
-                onClick={() => {
-                  handleChipClick('2021');
-                }}
-                className="scale-150"
-              />
-              <Chip
-                label="2022"
-                variant={year === '2022' ? 'filled' : 'outlined'}
-                onClick={() => handleChipClick('2022')}
-                className="scale-150"
-              />
-              <Chip
-                label="2023"
-                variant={year === '2023' ? 'filled' : 'outlined'}
-                onClick={() => handleChipClick('2023')}
-                className="scale-150"
-              />
-            </div>
-
-            <div className="flex space-x-4">
-              <p className="text-2xl font-semibold">Compare</p>
-
-              <Switch
-                checked={isCompareMode}
-                onChange={() => setCompareMode((value) => !value)}
-                inputProps={{ 'aria-label': 'controlled' }}
-              />
-            </div>
-          </div>
+          {controllers}
 
           <ChartPanel
             title={`Energy Consumption in ${
@@ -169,6 +194,8 @@ export default function Analytics() {
               }
             />
           </ChartPanel>
+
+          {controllers}
           <ChartPanel
             title={`Energy Billing in ${
               isCompareMode ? `${compareData[0]} vs ${compareData[1]}` : year
@@ -188,49 +215,3 @@ export default function Analytics() {
     </main>
   );
 }
-
-const data = [
-  {
-    name: 'Lighting',
-    uv: 31.47,
-    pv: 2400,
-    fill: '#8884d8',
-    label: 'Lighting',
-  },
-  {
-    name: 'Computers and TV',
-    uv: 26.69,
-    pv: 4567,
-    fill: '#83a6ed',
-  },
-  {
-    name: 'Pump Motor',
-    uv: -15.69,
-    pv: 1398,
-    fill: '#8dd1e1',
-  },
-  {
-    name: 'Switches',
-    uv: 8.22,
-    pv: 9800,
-    fill: '#82ca9d',
-  },
-  {
-    name: 'Printers and Photocopiers',
-    uv: -8.63,
-    pv: 3908,
-    fill: '#a4de6c',
-  },
-  {
-    name: 'Security Lights',
-    uv: -2.63,
-    pv: 4800,
-    fill: '#d0ed57',
-  },
-  {
-    name: 'Miscellaneous',
-    uv: 6.67,
-    pv: 4800,
-    fill: '#ffc658',
-  },
-];
