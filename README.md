@@ -14,7 +14,7 @@ pnpm dev
 bun dev
 ```
 
-### Final Outlook
+### Final Project Outlook
 
 ![](</images/Screenshot%20(547).png>)
 ![](</images/Screenshot%20(548).png>)
